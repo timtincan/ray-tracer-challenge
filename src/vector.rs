@@ -1,6 +1,8 @@
 use std::ops::{Add, Div, Mul, Neg, Sub};
 
-#[derive(Debug, PartialEq, Clone, Copy)]
+use crate::float_eq;
+
+#[derive(Debug, Clone, Copy)]
 pub struct Vector(pub f64, pub f64, pub f64);
 
 impl Vector {
@@ -73,7 +75,11 @@ impl Div<f64> for Vector {
     }
 }
 
-// TODO: implement PartialEq
+impl PartialEq for Vector {
+    fn eq(&self, other: &Self) -> bool {
+        float_eq(self.0, other.0) && float_eq(self.1, other.1) && float_eq(self.2, other.2)
+    }
+}
 
 #[cfg(test)]
 mod tests {
@@ -196,6 +202,4 @@ mod tests {
         assert_eq!(new_vec_1.cross(&new_vec_2), Vector::new(-1.0, 2.0, -1.0));
         assert_eq!(new_vec_2.cross(&new_vec_1), Vector::new(1.0, -2.0, 1.0));
     }
-
-
 }

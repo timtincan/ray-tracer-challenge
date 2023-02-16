@@ -1,7 +1,7 @@
-use crate::vector::Vector;
+use crate::{float_eq, vector::Vector};
 use std::ops::{Add, Sub};
 
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, Clone)]
 pub struct Point(pub f64, pub f64, pub f64);
 
 impl Point {
@@ -34,7 +34,11 @@ impl Sub<Vector> for Point {
     }
 }
 
-// TODO: implement PartialEq
+impl PartialEq for Point {
+    fn eq(&self, other: &Self) -> bool {
+        float_eq(self.0, other.0) && float_eq(self.1, other.1) && float_eq(self.2, other.2)
+    }
+}
 
 #[cfg(test)]
 mod tests {
