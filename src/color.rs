@@ -1,5 +1,5 @@
-use std::ops::{Add, Mul, Sub};
 use crate::float_eq;
+use std::ops::{Add, Mul, Sub};
 
 #[derive(Debug, Clone, Copy)]
 pub struct Color {
@@ -58,7 +58,9 @@ impl Mul for Color {
 
 impl PartialEq for Color {
     fn eq(&self, other: &Color) -> bool {
-        float_eq(self.red, other.red) && float_eq(self.green, other.green) && float_eq(self.blue, other.blue)
+        float_eq(self.red, other.red)
+            && float_eq(self.green, other.green)
+            && float_eq(self.blue, other.blue)
     }
 }
 
@@ -133,7 +135,14 @@ mod tests {
             blue: 0.4,
         };
 
-        assert_eq!(c * 2.0, Color { red: 0.4, green: 0.6, blue: 0.8 });
+        assert_eq!(
+            c * 2.0,
+            Color {
+                red: 0.4,
+                green: 0.6,
+                blue: 0.8
+            }
+        );
     }
 
     #[test]
@@ -149,6 +158,13 @@ mod tests {
             blue: 0.1,
         };
 
-        assert_eq!(c1 * c2, Color { red: 0.9, green: 0.2, blue: 0.04 });
+        assert_eq!(
+            c1 * c2,
+            Color {
+                red: 0.9,
+                green: 0.2,
+                blue: 0.04
+            }
+        );
     }
 }

@@ -1,11 +1,11 @@
+mod canvas;
+mod color;
 mod point;
 mod vector;
-mod color;
-mod canvas;
+pub use crate::canvas::Canvas;
+pub use crate::color::Color;
 pub use crate::point::Point;
 pub use crate::vector::Vector;
-pub use crate::color::Color;
-pub use crate::canvas::Canvas;
 
 pub const EPSILON: f64 = 0.0001;
 
